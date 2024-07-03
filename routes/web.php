@@ -17,5 +17,5 @@ Route::middleware([
 
     Route::get('/device', [\App\Http\Controllers\Device\DeviceController::class, 'show'])->name('device.show');
     Route::post('/device/store', [\App\Http\Controllers\Device\DeviceController::class, 'store'])->name('device.store');
-    Route::get('/device/connect', [\App\Http\Controllers\Device\DeviceController::class, 'connect'])->name('device.connect');
+    Route::post('/device/connect', [\App\Http\Controllers\Device\DeviceController::class, 'connect'])->name('device.connect');
 });
