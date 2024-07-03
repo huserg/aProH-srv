@@ -35,7 +35,7 @@
                         <form action="{{ route('device.connect', $device) }}" method="POST">
                             @csrf
                             <div class="flex items-center mt-4">
-                                @if($availableDevices->count())
+                                @if($availableDevices))
                                     <label for="device_id" class="block text-sm font-medium text-gray-700 dark:text-gray-200">{{ __('Select device') }}</label>
                                     <select name="device_id" id="device_id" class="ml-4 block w-full shadow-sm sm:text-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md dark:bg-gray-700 dark:text-gray-200">
                                         @foreach($availableDevices as $availableDevice)
