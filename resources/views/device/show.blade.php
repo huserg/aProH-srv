@@ -32,26 +32,26 @@
                     <div class="p-6 sm:px-20 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
                         <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-200">{{ __('Connected Devices') }}</h2>
 
-                        <form action="{{ route('device.connect', $device) }}" method="POST">
-                            @csrf
-                            <div class="flex items-center mt-4">
-                                @if($availableDevices)
-                                    <label for="device_id" class="block text-sm font-medium text-gray-700 dark:text-gray-200">{{ __('Select device') }}</label>
-                                    <select name="device_id" id="device_id" class="ml-4 block w-full shadow-sm sm:text-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md dark:bg-gray-700 dark:text-gray-200">
-                                        @foreach($availableDevices as $availableDevice)
-                                            <option value="{{ $availableDevice->id }}">{{ $availableDevice->user->name }}</option>
-                                        @endforeach
-                                    </select>
-                                @else
-                                    <span class="text-lg font-semibold text-gray-800 dark:text-gray-200">{{ __('No available devices, add people to your team or join one to see more devices to add') }}</span>
-                                @endif
-                            </div>
-                            <div class="mt-4">
-                                <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
-                                    {{ __('Connect') }}
-                                </button>
-                            </div>
-                        </form>
+                        @if($availableDevices)
+                            <form action="{{ route('device.connect', $device) }}" method="POST">
+                                @csrf
+                                <div class="flex items-center mt-4">
+                                        <label for="device_id" class="block text-sm font-medium text-gray-700 dark:text-gray-200">{{ __('Select device') }}</label>
+                                        <select name="device_id" id="device_id" class="ml-4 block w-full shadow-sm sm:text-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md dark:bg-gray-700 dark:text-gray-200">
+                                            @foreach($availableDevices as $availableDevice)
+                                                <option value="{{ $availableDevice->id }}">{{ $availableDevice->user->name }}</option>
+                                            @endforeach
+                                        </select>
+                                </div>
+                                <div class="mt-4">
+                                    <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
+                                        {{ __('Connect') }}
+                                    </button>
+                                </div>
+                            </form>
+                        @else
+                            <span class="text-lg font-semibold text-gray-800 dark:text-gray-200">{{ __('No available devices, add people to your team or join one to see more devices to add') }}</span>
+                        @endif
 
                         <ul class="divide-y divide-gray-200 dark:divide-gray-700">
                             @forelse($device->devices as $connectedDevice)
