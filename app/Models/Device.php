@@ -24,6 +24,6 @@ class Device extends Model
 
     public function devices()
     {
-        return $this->belongsToMany(Device::class, 'device_devices', 'device_id', 'device_id');
+        return $this->belongsToMany(Device::class, 'device_device', 'device_id', 'device_id');
     }
 }
