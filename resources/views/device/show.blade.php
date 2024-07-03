@@ -18,14 +18,14 @@
                                     {{ $device->status }}
                                 </span>
                             </div>
-                            <div class="flex items-center">
-                                <a href="{{ route('device.edit', $device) }}" class="text-indigo-600 hover:text-indigo-900">{{ __('Edit') }}</a>
-                                <form action="{{ route('device.destroy', $device) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="text-red-600 hover:text-red-900">{{ __('Delete') }}</button>
-                                </form>
-                            </div>
+{{--                            <div class="flex items-center">--}}
+{{--                                <a href="{{ route('device.edit', $device) }}" class="text-indigo-600 hover:text-indigo-900">{{ __('Edit') }}</a>--}}
+{{--                                <form action="{{ route('device.destroy', $device) }}" method="POST">--}}
+{{--                                    @csrf--}}
+{{--                                    @method('DELETE')--}}
+{{--                                    <button type="submit" class="text-red-600 hover:text-red-900">{{ __('Delete') }}</button>--}}
+{{--                                </form>--}}
+{{--                            </div>--}}
                         </div>
                     </div>
     {{--                Display device connected devices status with usernames --}}
