@@ -15,7 +15,12 @@ class DeviceController extends Controller
     }
 
     public function store(Request $request) {
-        $device = Auth::user()->device()->create($request->all());
+        $validated = $request->validate([
+            'mac_address' => 'required|string|max:255|unique:devices,mac_address',
+        ]);
+
+        Auth::user()->device()->create($validated);
+
         return redirect()->route('device.show');
     }
 
@@ -47,21 +52,21 @@ class DeviceController extends Controller
         $validatedData = $request->validate([
             'device_id' => 'required|integer|exists:devices,id',
         ]);
-    
+
         // Trouver l'appareil à lier
         $deviceToLink = Device::find($validatedData['device_id']);
-    
+
         // Obtenir l'appareil de l'utilisateur authentifié
         $userDevice = Auth::user()->device;
-    
+
         // Vérifier si l'utilisateur a un appareil
         if (!$userDevice) {
             return redirect()->route('device.show')->withErrors(['error' => 'User has no device to link to.']);
         }
-    
+
         // Lier l'appareil
         $userDevice->relatedDevices()->attach($deviceToLink->id);
-    
+
         // Rediriger vers la route 'device.show'
         return redirect()->route('device.show');
     }

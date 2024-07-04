@@ -17,6 +17,15 @@ class Device extends Model
         'user_id',
     ];
 
+    public function asApiObject() {
+        return [
+            'id' => $this->id,
+            'status' => $this->status,
+            'order' => $this->order,
+        ];
+    }
+
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -41,7 +50,7 @@ class Device extends Model
     {
         // Définir une couleur de texte contrastée en fonction de la couleur de fond
         $hexColor = $this->status ? ltrim($this->status, '#') : '888888';
-        
+
         // Convertir le hex en RGB
         if (strlen($hexColor) === 6) {
             list($r, $g, $b) = sscanf($hexColor, "%02x%02x%02x");
