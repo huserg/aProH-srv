@@ -26,4 +26,22 @@ class Device extends Model
     {
         return $this->belongsToMany(Device::class, 'device_device', 'device_id', 'related_device_id');
     }
+
+
+    public function getStatusColorAttribute()
+    {
+        // Assurez-vous que le statut est bien défini et commence par #
+        $hexColor = $this->status ? ltrim($this->status, '#') : '888888';
+
+        // Convertir le hex en RGB
+        if (strlen($hexColor) === 6) {
+            list($r, $g, $b) = sscanf($hexColor, "%02x%02x%02x");
+        } else {
+            // Valeur par défaut
+            $r = $g = $b = 136;
+        }
+
+        return "rgb({$r}, {$g}, {$b})";
+    }
+
 }
