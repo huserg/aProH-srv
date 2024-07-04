@@ -23,6 +23,7 @@ class StatusController extends Controller
             return response()->json([
                 'code' => 0,
                 'message' => 'success',
+                'related_devices' => $related_devices,
             ]);
         }
         return $this->response([

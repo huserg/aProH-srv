@@ -17,15 +17,6 @@ class Device extends Model
         'user_id',
     ];
 
-    public function asApiObject() {
-        return [
-            'id' => $this->id,
-            'status' => $this->status,
-            'order' => $this->order,
-        ];
-    }
-
-
     public function user()
     {
         return $this->belongsTo(User::class);
