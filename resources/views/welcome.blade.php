@@ -31,7 +31,7 @@
 <img id="background" src="/storage/images/svg/background.svg" alt="Background"/>
 <div class="flex flex-col min-h-screen">
     <!-- Header and Navigation -->
-    <header class="relative bg-black-50 text-yellow/50 dark:bg-black dark:text-white/50 w-full py-4">
+    <header class="relative bg-transparent text-yellow/50 dark:bg-transparent dark:text-white/50 w-full py-4">
         <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
             <img class="size-12" src="/storage/images/svg/logo.svg" alt="aProH logo"/>
             @if (Route::has('login'))
@@ -66,7 +66,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-black-50 text-yellow/50 dark:bg-black dark:text-white/70 py-6 text-center text-sm">
+    <footer class="bg-transparent text-yellow/50 dark:bg-transparent dark:text-white/70 py-6 text-center text-sm">
         {{ config('app.name') }} &copy; {{ date('Y') }}
     </footer>
 </div>
