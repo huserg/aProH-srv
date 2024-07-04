@@ -22,18 +22,18 @@ class DeviceController extends Controller
     {
         $device = Auth::user()->device;
         // all devices that are linked to team members accounts
-        $availableDevices = Auth::user()->allTeams()->flatMap(function ($team) {
+        $availableDevices = Auth::user()->allTeams()->map(function ($team) {
             // Vérification pour s'assurer que chaque équipe a des utilisateurs
             if ($team->users->isEmpty()) {
                 return collect();
             }
-            
-            return $team->users->flatMap(function ($user) {
+
+            return $team->users->map(function ($user) {
                 // Vérification pour s'assurer que chaque utilisateur a des devices
                 if (empty($user->device)) {
                     return collect();
                 }
-                
+
                 return $user->device;
             });
         })->flatten();
