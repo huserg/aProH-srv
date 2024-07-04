@@ -33,15 +33,27 @@ class Device extends Model
         // Assurez-vous que le statut est bien défini et commence par #
         $hexColor = $this->status ? ltrim($this->status, '#') : '888888';
 
+        // Retourne la couleur hexadécimale
+        return "#{$hexColor}";
+    }
+
+    public function getStatusTextColorAttribute()
+    {
+        // Définir une couleur de texte contrastée en fonction de la couleur de fond
+        $hexColor = $this->status ? ltrim($this->status, '#') : '888888';
+        
         // Convertir le hex en RGB
         if (strlen($hexColor) === 6) {
             list($r, $g, $b) = sscanf($hexColor, "%02x%02x%02x");
         } else {
-            // Valeur par défaut
             $r = $g = $b = 136;
         }
 
-        return "rgb({$r}, {$g}, {$b})";
+        // Calculer la luminance
+        $luminance = 0.2126 * ($r / 255) + 0.7152 * ($g / 255) + 0.0722 * ($b / 255);
+
+        // Retourner blanc ou noir en fonction de la luminance
+        return $luminance > 0.5 ? '#000000' : '#FFFFFF';
     }
 
 }
