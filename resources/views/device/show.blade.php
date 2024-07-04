@@ -58,8 +58,8 @@
                                 <li class="py-4 flex justify-between items-center">
                                     <div class="flex items-center">
                                         <span class="text-lg font-semibold text-gray-800 dark:text-gray-200">{{ $relatedDevice->user->name }}</span>
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-{{ $relatedDevice->status ?? 'gray' }}-100 text-{{ $relatedDevice->status ?? 'gray' }}-800 dark:bg-{{ $relatedDevice->status ?? 'gray' }}-800 dark:text-{{ $relatedDevice->status ?? 'gray' }}-100">
-                                            {{ $relatedDevice->status ?? 'gray' }}
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-{{ $relatedDevice->status ?? 'black' }}-100 text-{{ $relatedDevice->status ?? 'black' }}-800 dark:bg-{{ $relatedDevice->status ?? 'black' }}-800 dark:text-{{ $relatedDevice->status ?? 'black' }}-100">
+                                            {{ $relatedDevice->status ?? 'black' }}
                                         </span>
                                     </div>
                                 </li>
