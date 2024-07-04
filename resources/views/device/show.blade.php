@@ -54,19 +54,19 @@
                         @endif
 
                         <ul class="space-y-4">
-                            @forelse($device->relatedDevices as $relatedDevice)
+                           @forelse($device->relatedDevices as $relatedDevice)
                                 <li class="py-4 flex justify-between items-center border-b border-gray-200 dark:border-gray-700">
                                     <div class="flex items-center">
                                         @if ($relatedDevice->user->profile_photo_url)
                                             <img class="h-10 w-10 rounded-full" src="{{ $relatedDevice->user->profile_photo_url }}" alt="{{ $relatedDevice->user->name }}">
                                         @else
-                                            <div class="bg-{{ $relatedDevice->status ?? 'gray' }}-500 rounded-full h-10 w-10 flex items-center justify-center text-white">
+                                            <div class="rounded-full h-10 w-10 flex items-center justify-center text-white" style="background-color: {{ $relatedDevice->status_color }};">
                                                 <span class="text-xl font-bold">{{ strtoupper(substr($relatedDevice->user->name, 0, 1)) }}</span>
                                             </div>
                                         @endif
                                         <div class="ml-4">
                                             <span class="text-lg font-semibold text-gray-800 dark:text-gray-200">{{ $relatedDevice->user->name }}</span>
-                                            <span class="px-2 ml-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-{{ $relatedDevice->status ?? 'gray' }}-100 text-{{ $relatedDevice->status ?? 'gray' }}-800 dark:bg-{{ $relatedDevice->status ?? 'gray' }}-800 dark:text-{{ $relatedDevice->status ?? 'gray' }}-100">
+                                            <span class="px-2 ml-2 inline-flex text-xs leading-5 font-semibold rounded-full" style="background-color: {{ $relatedDevice->status_color }}; color: {{ $relatedDevice->status_text_color }};">
                                                 {{ ucfirst($relatedDevice->status ?? 'unknown') }}
                                             </span>
                                         </div>
