@@ -54,12 +54,12 @@
                         @endif
 
                         <ul class="divide-y divide-gray-200 dark:divide-gray-700">
-                            @forelse($device->devices as $connectedDevice)
+                            @forelse($device->related_devices as $relatedDevice)
                                 <li class="py-4 flex justify-between items-center">
                                     <div class="flex items-center">
-                                        <span class="text-lg font-semibold text-gray-800 dark:text-gray-200">{{ $connectedDevice->name }}</span>
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-{{ $connectedDevice->status }}-100 text-{{ $connectedDevice->status }}-800 dark:bg-{{ $connectedDevice->status }}-800 dark:text-{{ $connectedDevice->status }}-100">
-                                            {{ $connectedDevice->status }}
+                                        <span class="text-lg font-semibold text-gray-800 dark:text-gray-200">{{ $relatedDevice->user->name }}</span>
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-{{ $relatedDevice->status }}-100 text-{{ $relatedDevice->status }}-800 dark:bg-{{ $relatedDevice->status }}-800 dark:text-{{ $relatedDevice->status }}-100">
+                                            {{ $relatedDevice->status }}
                                         </span>
                                     </div>
                                 </li>
