@@ -60,7 +60,7 @@ class DeviceController extends Controller
         }
     
         // Lier l'appareil
-        $device->devices()->attach($deviceToLink);
+        $userDevice->relatedDevices()->attach($deviceToLink->id);
     
         // Rediriger vers la route 'device.show'
         return redirect()->route('device.show');
