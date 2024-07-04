@@ -19,7 +19,12 @@ class StatusController extends Controller
         $device = Device::where('mac', $request->mac)->first();
         if ($device) {
             // get all devices configured on the device
-            $related_devices = $device->relatedDevices()?->orderBy('order')->get()->only(['id', 'status']);
+            $related_devices = $device->relatedDevices()?->orderBy('order')->get()->map(function ($device) {
+                return [
+                    'id' => $device->id,
+                    'status' => $device->status,
+                ];
+            })->toArray();
             return response()->json([
                 'code' => 0,
                 'message' => 'success',
