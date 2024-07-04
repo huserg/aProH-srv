@@ -11,4 +11,6 @@ class DeviceDevices extends Pivot
         'related_device_id',
         'order',
     ];
+
+
 }

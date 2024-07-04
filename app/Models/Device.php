@@ -33,7 +33,7 @@ class Device extends Model
 
     public function relatedDevices()
     {
-        return $this->belongsToMany(Device::class, 'device_device', 'device_id', 'related_device_id');
+        return $this->belongsToMany(Device::class, 'device_device', 'device_id', 'related_device_id')->withTimestamps();
     }
 
 
