@@ -53,19 +53,28 @@
                             <span class="text-lg font-semibold text-gray-800 dark:text-gray-200">{{ __('No available devices, add people to your team or join one to see more devices to add') }}</span>
                         @endif
 
-                        <ul class="divide-y divide-gray-200 dark:divide-gray-700">
+                        <ul class="space-y-4">
                             @forelse($device->relatedDevices as $relatedDevice)
-                                <li class="py-4 flex justify-between items-center">
+                                <li class="py-4 flex justify-between items-center border-b border-gray-200 dark:border-gray-700">
                                     <div class="flex items-center">
-                                        <span class="text-lg font-semibold text-gray-800 dark:text-gray-200">{{ $relatedDevice->user->name }}</span>
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-{{ $relatedDevice->status ?? 'black' }}-100 text-{{ $relatedDevice->status ?? 'black' }}-800 dark:bg-{{ $relatedDevice->status ?? 'black' }}-800 dark:text-{{ $relatedDevice->status ?? 'black' }}-100">
-                                            {{ $relatedDevice->status ?? 'black' }}
-                                        </span>
+                                        @if ($relatedDevice->user->profile_photo_url)
+                                            <img class="h-10 w-10 rounded-full" src="{{ $relatedDevice->user->profile_photo_url }}" alt="{{ $relatedDevice->user->name }}">
+                                        @else
+                                            <div class="bg-{{ $relatedDevice->status ?? 'gray' }}-500 rounded-full h-10 w-10 flex items-center justify-center text-white">
+                                                <span class="text-xl font-bold">{{ strtoupper(substr($relatedDevice->user->name, 0, 1)) }}</span>
+                                            </div>
+                                        @endif
+                                        <div class="ml-4">
+                                            <span class="text-lg font-semibold text-gray-800 dark:text-gray-200">{{ $relatedDevice->user->name }}</span>
+                                            <span class="px-2 ml-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-{{ $relatedDevice->status ?? 'gray' }}-100 text-{{ $relatedDevice->status ?? 'gray' }}-800 dark:bg-{{ $relatedDevice->status ?? 'gray' }}-800 dark:text-{{ $relatedDevice->status ?? 'gray' }}-100">
+                                                {{ ucfirst($relatedDevice->status ?? 'unknown') }}
+                                            </span>
+                                        </div>
                                     </div>
                                 </li>
                             @empty
-                                <li class="py-4 flex justify-between items-center">
-                                    <span class="text-lg font-semibold text-gray-800 dark:text-gray-200">{{ __('No connected devices') }}</span>
+                                <li class="py-4 flex justify-center items-center text-gray-500 dark:text-gray-400">
+                                    No related devices found.
                                 </li>
                             @endforelse
                         </ul>
