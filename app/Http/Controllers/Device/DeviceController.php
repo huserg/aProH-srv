@@ -52,10 +52,10 @@ class DeviceController extends Controller
         $deviceToLink = Device::find($validatedData['device_id']);
     
         // Obtenir l'appareil de l'utilisateur authentifié
-        $device = Auth::user()->device;
+        $userDevice = Auth::user()->device;
     
         // Vérifier si l'utilisateur a un appareil
-        if (!$device) {
+        if (!$userDevice) {
             return redirect()->route('device.show')->withErrors(['error' => 'User has no device to link to.']);
         }
     
