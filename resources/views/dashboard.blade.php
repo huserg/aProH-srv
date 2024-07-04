@@ -11,7 +11,7 @@
 
     @if($device)
         <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto">
                 <div class="bg-white dark:bg-black-800 overflow-hidden shadow-xl sm:rounded-lg">
                     {{--                Display device with status (status is a hex color) in a pill --}}
                     <div class="p-6 sm:px-20 bg-white dark:bg-black-800 border-b border-black-200 dark:border-black-700">
@@ -25,7 +25,6 @@
                     </div>
                     {{--                Display device connected devices status with usernames --}}
                     <div class="p-6 sm:px-20 bg-white dark:bg-black-800 border-b border-black-200 dark:border-black-700">
-                        <h2 class="text-lg font-semibold text-yellow-800 dark:text-yellow-200">{{ __('Connected Devices') }}</h2>
 
                         @if($availableDevices && $availableDevices->count())
                             <form action="{{ route('device.connect', $device) }}" method="POST">
@@ -45,8 +44,13 @@
                                 </div>
                             </form>
                         @else
-                            <span class="text-lg font-semibold text-yellow-800 dark:text-yellow-200">{{ __('No available devices, add people to your team or join one to see more devices to add') }}</span>
+                            <span class="text-lg font-semibold text-yellow-800 dark:text-yellow-200">{{ __('No new devices to add, add people to your team or join one to see more devices to add') }}</span>
                         @endif
+
+                    </div>
+                    {{--                Display device connected devices status with usernames --}}
+                    <div class="p-6 sm:px-20 bg-white dark:bg-black-800 border-b border-black-200 dark:border-black-700">
+                        <h2 class="text-lg font-semibold text-yellow-800 dark:text-yellow-200">{{ __('Connected Devices') }}</h2>
 
                         <ul class="space-y-4">
                             @forelse($device->relatedDevices as $relatedDevice)
@@ -65,9 +69,9 @@
                                             </span>
                                         </div>
                                     </div>
-                                    <form action="{{ route('device.disconnect', $relatedDevice->id) }}" method="POST">
+                                    <form action="{{ route('device.disconnect') }}" method="POST">
                                         @csrf
-                                        @method('DELETE')
+                                        <input type="hidden" name="device_id" value="{{ $relatedDevice->id }}">
                                         <button type="submit" class="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-md hover:bg-red-700 focus:outline-none focus:bg-red-700 transition duration-150 ease-in-out">
                                             {{ __('Disconnect') }}
                                         </button>
@@ -85,7 +89,7 @@
         </div>
     @else
         <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto">
                 <div class="bg-white dark:bg-black-800 overflow-hidden shadow-xl sm:rounded-lg">
                     <div class="p-6 sm:px-20 bg-white dark:bg-black-800 border-b border-black-200 dark:border-black-700">
                         <h1 class="text-2xl font-bold text-yellow-800 dark:text-yellow-200">{{ __('Please insert device MAC address') }}</h1>

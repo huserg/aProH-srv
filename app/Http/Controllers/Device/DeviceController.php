@@ -36,7 +36,7 @@ class DeviceController extends Controller
                     return collect();
                 }
                 // Vérification pour s'assurer que l'appareil de l'utilisateur n'est pas déjà lié
-                if ($device->devices?->contains($user->device)) {
+                if ($device->relatedDevices?->contains($user->device)) {
                     return collect();
                 }
                 // Retourner l'appareil de l'utilisateur
