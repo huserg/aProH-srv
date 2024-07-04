@@ -32,7 +32,7 @@
                     <div class="p-6 sm:px-20 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
                         <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-200">{{ __('Connected Devices') }}</h2>
 
-                        @if($availableDevices)
+                        @if($availableDevices && $availableDevices->count())
                             <form action="{{ route('device.connect', $device) }}" method="POST">
                                 @csrf
                                 <div class="flex items-center mt-4">
