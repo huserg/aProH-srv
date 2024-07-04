@@ -17,9 +17,7 @@
                     <div class="p-6 sm:px-20 bg-white dark:bg-black-800 border-b border-black-200 dark:border-black-700">
                         <div class="flex justify-between">
                             <div class="flex items-center">
-                                <span class="px-4 py-2 ml-2 inline-flex text-xs leading-5 font-semibold rounded-full" style="background-color: {{ $device->status_color }}; color: {{ $device->status_text_color }};">
-                                    {{ $device->user->name }}
-                                </span>
+                                <livewire:device-status :device-id="$device->id" :refresh-interval="5000" />
                             </div>
                         </div>
                     </div>
@@ -64,9 +62,7 @@
                                             </div>
                                         @endif
                                         <div class="ml-4">
-                                            <span class="px-4 py-2 ml-2 inline-flex text-xs leading-5 font-semibold rounded-full" style="background-color: {{ $relatedDevice->status_color }}; color: {{ $relatedDevice->status_text_color }};">
-                                                {{ $relatedDevice->user->name }}
-                                            </span>
+                                            <livewire:device-status :device-id="$relatedDevice->id" :refresh-interval="5000" />
                                         </div>
                                     </div>
                                     <form action="{{ route('device.disconnect') }}" method="POST">
