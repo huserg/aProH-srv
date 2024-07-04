@@ -42,8 +42,26 @@ class DeviceController extends Controller
 
     public function connect(Request $request)
     {
+        // Valider la requête
+        $validatedData = $request->validate([
+            'device_id' => 'required|integer|exists:devices,id',
+        ]);
+    
+        // Trouver l'appareil à lier
+        $deviceToLink = Device::find($validatedData['device_id']);
+    
+        // Obtenir l'appareil de l'utilisateur authentifié
         $device = Auth::user()->device;
-        $device->devices()->attach($request->device_id);
+    
+        // Vérifier si l'utilisateur a un appareil
+        if (!$device) {
+            return redirect()->route('device.show')->withErrors(['error' => 'User has no device to link to.']);
+        }
+    
+        // Lier l'appareil
+        $device->devices()->attach($deviceToLink);
+    
+        // Rediriger vers la route 'device.show'
         return redirect()->route('device.show');
     }
 }
