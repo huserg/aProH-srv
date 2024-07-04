@@ -22,9 +22,11 @@ class DeviceController extends Controller
     {
         $device = Auth::user()->device;
         // all devices that are linked to team members accounts
-        $availableDevices = Auth::user()->allTeams()?->users->flatMap(function ($user) {
-            return $user->device;
-        })->flatten();
+$availableDevices = Auth::user()->allTeams()?->flatMap(function ($team) {
+    return $team->users->flatMap(function ($user) {
+        return $user->device;
+    });
+})->flatten();
         return view('device.show', compact('device', 'availableDevices'));
     }
 
