@@ -33,7 +33,7 @@
     <!-- Header and Navigation -->
     <header class="relative bg-transparent text-yellow/50 dark:bg-transparent dark:text-white/50 w-full py-4">
         <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
-            <img class="size-12" src="/storage/images/svg/logo.svg" alt="aProH logo"/>
+            <div></div>
             @if (Route::has('login'))
                 <nav class="flex space-x-4">
                     @auth
@@ -59,7 +59,8 @@
     </header>
 
     <!-- Main Content -->
-    <main class="flex-grow flex items-center justify-center py-12">
+    <main class="flex-grow flex flex-col items-center justify-center py-12">
+        <img class="" src="/storage/images/svg/logo.svg" alt="aProH logo" style="max-width: 60%; max-height: 30vh"/>
         <div class="text-center">
             <h1 class="w-full h-full font-bold" style="font-size: 5rem;">{{ __('aProH ?') }}</h1>
         </div>
